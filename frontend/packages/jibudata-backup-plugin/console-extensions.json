@@ -1,0 +1,200 @@
+[
+  {
+    "type": "console.flag/model",
+    "properties": {
+      "flag": "JIBUDATA_BACKUP",
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1alpha1",
+        "kind": "Backup"
+      }
+    }
+  },
+  {
+    "type": "console.navigation/section",
+    "properties": {
+      "id": "backuprestore",
+      "name": "Backup and Restore",
+      "insertAfter": "workloads"
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+      "id": "backups",
+      "section": "backuprestore",
+      "name": "Backup List",
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1alpha1",
+        "kind": "Backup"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+      "id": "backupjobs",
+      "section": "backuprestore",
+      "name": "Backup Job List",
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1alpha1",
+        "kind": "BackupJob"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+      "id": "restores",
+      "section": "backuprestore",
+      "name": "Restore List",
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1alpha1",
+        "kind": "Restore"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+      "id": "restorejobs",
+      "section": "backuprestore",
+      "name": "Restore Job List",
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1alpha1",
+        "kind": "RestoreJob"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "miganalytic",
+    "section": "backuprestore",
+    "name": "MigAnalytic List",
+    "model": {
+      "group": "migration.yinhestor.com",
+      "version": "v1alpha1",
+      "kind": "MigAnalytic"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "migclusters",
+    "section": "backuprestore",
+    "name": "MigCluster List",
+    "model": {
+      "group": "migration.yinhestor.com",
+      "version": "v1alpha1",
+      "kind": "MigCluster"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "databasehooks",
+    "section": "backuprestore",
+    "name": "Database Hooks",
+    "model": {
+      "group": "ys.jibudata.com",
+      "version": "v1alpha1",
+      "kind": "AppHook"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "mighooks",
+    "section": "backuprestore",
+    "name": "MigHook List",
+    "model": {
+      "group": "migration.yinhestor.com",
+      "version": "v1alpha1",
+      "kind": "MigHook"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "migmigrations",
+    "section": "backuprestore",
+    "name": "MigMigration List",
+    "model": {
+      "group": "migration.yinhestor.com",
+      "version": "v1alpha1",
+      "kind": "MigMigration"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "migplans",
+    "section": "backuprestore",
+    "name": "MigPlan List",
+    "model": {
+      "group": "migration.yinhestor.com",
+      "version": "v1alpha1",
+      "kind": "MigPlan"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "migstorages",
+    "section": "backuprestore",
+    "name": "MigStorage List",
+    "model": {
+      "group": "migration.yinhestor.com",
+      "version": "v1alpha1",
+      "kind": "MigStorage"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  }
+]
