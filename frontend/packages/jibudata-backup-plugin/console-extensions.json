@@ -38,6 +38,20 @@
     }
   },
   {
+    "type": "console.page/resource/list",
+    "properties": {
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1alpha1",
+        "kind": "Backup"
+      },
+      "component": { "$codeRef": "pages.BackupListPage" }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
     "type": "console.navigation/resource-ns",
     "properties": {
       "id": "backupjobs",
