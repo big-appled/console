@@ -14,6 +14,9 @@
     "@console/topology": "0.0.0-fixed"
   },
   "consolePlugin": {
-    "entry": "src/plugins.tsx"
+    "entry": "src/plugins.tsx",
+    "exposedModules": {
+        "pages": "src/pages"
+      }
   }
 }
