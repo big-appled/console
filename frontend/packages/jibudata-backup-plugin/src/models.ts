@@ -36,6 +36,18 @@ export const DataExportModel: K8sKind = {
     plural: 'dataexports',
 };
 
+export const MigHookModel: K8sKind = {
+    kind: 'MigHook',
+    label: 'MigHook',
+    labelPlural: 'mighooks',
+    apiGroup: 'migration.yinhestor.com',
+    apiVersion: 'v1alpha1',
+    abbr: 'HK',
+    namespaced: true,
+    crd: true,
+    plural: 'mighooks',
+};
+
 export const VeleroBackupModel: K8sKind = {
     kind: 'Backup',
     label: 'Backup',
@@ -47,3 +59,5 @@ export const VeleroBackupModel: K8sKind = {
     crd: true,
     plural: 'backups',
 };
+
+
