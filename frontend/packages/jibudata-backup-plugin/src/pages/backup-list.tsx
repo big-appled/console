@@ -109,7 +109,7 @@ export const BackupList: React.FC = (props) => {
     return (
       <Table
         {...props}
-        aria-label={t('public~Backupes')}
+        aria-label={t('public~Backups')}
         Header={BackupTableHeader}
         Row={BackupTableRow}
         virtualize
@@ -125,7 +125,7 @@ export const BackupListPage: React.FC<BackupPageProps> = (props) => {
     return (
         <ListPage
         {..._.omit(props, 'mock')}
-        title={t('public~Backupes')}
+        title={t('public~Backups')}
         kind={referenceForModel(BackupModel)}
         ListComponent={BackupList}
         canCreate={true}
