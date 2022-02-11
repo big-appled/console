@@ -183,3 +183,46 @@ export type MigHookKind = K8sResourceCommon & {
 	spec:   MigHookSpec   //`json:"spec,omitempty"`
 	status: MigHookStatus //`json:"status,omitempty"`
 }
+
+// AppHookSpec defines the desired state of AppHook
+type AppHookSpec = {
+	// Name is a job for backup/restore/migration
+	name?: string //`json:"name"`
+	// AppProvider is the application identifier for different vendors, such as mysql
+	appProvider?: string //`json:"appProvider,omitempty"`
+	// Endpoint to connect the applicatio service
+	endPoint?: string //`json:"endPoint,omitempty"`
+	// Databases
+	databases?: string[] //`json:"databases,omitempty"`
+	// OperationType is the operation executed in application
+	//+kubebuilder:validation:Enum=quiesce;unquiesce
+	operationType?: string //`json:"operationType,omitempty"`
+	// TimeoutSeconds is the timeout of operation
+	//+kubebuilder:validation:Minimum=0
+	timeoutSeconds?: number //`json:"timeoutSeconds,omitempty"`
+	// Secret to access the application
+	secret?: any //`json:"secret,omitempty"`
+	// Other options
+	params?:{
+        [key: string]: string
+    } //map[string]string `json:"params,omitempty"`
+}
+
+// AppHookStatus defines the observed state of AppHook
+//+kubebuilder:subresource:status
+type AppHookStatus = {
+	phase?: string //`json:"phase,omitempty"`
+}
+
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
+//+kubebuilder:printcolumn:name="Age",type=date,JSONPath=.metadata.creationTimestamp
+//+kubebuilder:printcolumn:name="Created At",type=string,JSONPath=.metadata.creationTimestamp
+//+kubebuilder:printcolumn:name="Phase",type=string,JSONPath=.status.phase,description="Phase"
+
+// AppHook is the Schema for the apphooks API
+export type AppHookKind = K8sResourceCommon & {
+    spec?:   AppHookSpec   //`json:"spec,omitempty"`
+	status?: AppHookStatus //`json:"status,omitempty"`
+}
+
