@@ -70,3 +70,45 @@ export type BackupKind = K8sResourceCommon & {
     status?: BackupStatus
 };
 
+// BackupJobSpec defines the desired state of BackupJob
+type BackupJobSpec = {
+	backupRef?:       any //`json:"backupRef,omitempty"`
+	stage?:           boolean                 //`json:"stage"`
+	quiescePods?:     boolean                  //`json:"quiescePods,omitempty"`
+	keepAnnotations?: boolean                  //`json:"keepAnnotations,omitempty"`
+	verify?:          boolean                  //`json:"verify,omitempty"`
+	canceled?:        boolean                  //`json:"canceled,omitempty"`
+	inactivated?:     boolean                  //`json:"inactivated,omitempty"`
+	repeat?:          boolean                  //`json:"repeat,omitempty"`
+	exportData?:      boolean                  //`json:"exportData,omitempty"`
+}
+
+type ExportResult = {
+	DataExportRef?: any //`json:"DataExportRef,omitempty"`
+	ExportStatus?:  string                  //`json:"ExportStatus,omitempty"`
+}
+
+// BackupJobStatus defines the observed state of BackupJob
+type BackupJobStatus = {
+	conditions?:     any    //`json:",inline"`
+	unhealthyResources?: any //`json:",inline"`
+	submitTimestamp?:    any        //`json:"submitTimestamp,omitempty"`
+	startTimestamp?:     any        //`json:"startTimestamp,omitempty"`
+	stopTimestamp?:      any       //`json:"stopTimestamp,omitempty"`
+	observedDigest?:     string              //`json:"observedDigest,omitempty"`
+	phase?:              string              //`json:"phase,omitempty"`
+	itinerary?:          string              //`json:"itinerary,omitempty"`
+	errors?:             string[]            //`json:"errors,omitempty"`
+	totalItems?:         number                 //`json:"totalItems,omitempty"`
+	backedUpItems?:      number                 //`json:"backedUpItems,omitempty"`
+	details?:            any //`json:"details,omitempty"`
+	exportResult?:       ExportResult        //`json:"exportResult,omitempty"`
+}
+
+// +kubebuilder:object:root=true
+// BackupJob is the Schema for the backupjobs API
+export type BackupJobKind = K8sResourceCommon & {
+	spec:   BackupJobSpec   //`json:"spec,omitempty"`
+	status?: BackupJobStatus //`json:"status,omitempty"`
+}
+

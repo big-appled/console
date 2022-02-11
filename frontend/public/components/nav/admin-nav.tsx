@@ -192,6 +192,12 @@ const AdminNav: React.FC<AdminNavProps> = ({ pluginNavItems }) => {
         title={t('Backup and Restore')}
         data-quickstart-id="qs-nav-backuprestore"
       />
+      
+      <NavSection
+        id="velerobackuprestore"
+        title={t('Velero')}
+        data-quickstart-id="qs-nav-velerobackuprestore"
+      />
 
       {/* Temporary addition of Knative Serverless and Virtualization section until extensibility allows for section ordering
           and admin-nav gets contributed through extensions. */}
