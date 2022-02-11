@@ -116,6 +116,20 @@
     }
   },
   {
+    "type": "console.page/resource/list",
+    "properties": {
+      "model": {
+        "group": "ys.jibudata.com",
+        "version": "v1alpha1",
+        "kind": "AppHook"
+      },
+      "component": { "$codeRef": "pages.AppHookListPage" }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
     "type": "console.navigation/resource-ns",
     "properties": {
       "id": "backupjobs",
