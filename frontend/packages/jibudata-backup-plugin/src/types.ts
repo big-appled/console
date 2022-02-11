@@ -116,37 +116,37 @@ export type BackupJobKind = K8sResourceCommon & {
 type ExportPolicy = {
 	// Requency of the export, default is 1 export per snapshot
 	// Frequency int           `json:"requency,omitempty"`
-	Retention?: any //`json:"retention,omitempty"`
+	retention?: any //`json:"retention,omitempty"`
 }
 
 // DataExportSpec defines the desired state of DataExport
 type DataExportSpec = {
-	Type?:         string                    //`json:"type"`
-	Policy?:       ExportPolicy              //`json:"policy,omitempty"`
-	BackupJobRef?: any   //`json:"backupJobRef"`
-	DataSources?:  any //`json:"dataSources,omitempty"`
+	type?:         string                    //`json:"type"`
+	policy?:       ExportPolicy              //`json:"policy,omitempty"`
+	backupJobRef?: any   //`json:"backupJobRef"`
+	dataSources?:  any //`json:"dataSources,omitempty"`
 	// DataRepo     DataRepoImpl              `json:"dataRepo,omitempty"`
 }
 
 // DataExportStatus defines the observed state of DataExport
 type DataExportStatus = {
-	Conditions?: any          //`json:",inline"`
-	Phase?:               string                       //`json:"phase,omitempty"`
-	StartTimestamp?:      any                 //`json:"startTimestamp,omitempty"`
-	StopTimestamp?:      any                 //`json:"stopTimestamp,omitempty"`
-	CompletionTimestamp?:      any                // `json:"completionTimestamp,omitempty"`
-	Progress?:{
+	conditions?: any          //`json:",inline"`
+	phase?:               string                       //`json:"phase,omitempty"`
+	startTimestamp?:      any                 //`json:"startTimestamp,omitempty"`
+	stopTimestamp?:      any                 //`json:"stopTimestamp,omitempty"`
+	completionTimestamp?:      any                // `json:"completionTimestamp,omitempty"`
+	progress?:{
         [key: string]: TransportProgress //`json:"progress,omitempty"`
     }
 	// +kubebuilder:pruning:PreserveUnknownFields
-	DataLocations?:      any          //`json:"dataLocations,omitempty"`
-	ObservedDigest?:  string                  //`json:"observedDigest,omitempty"`
-	VeleroExportRef?:      any  //`json:"veleroExportRef,omitempty"`
+	dataLocations?:      any          //`json:"dataLocations,omitempty"`
+	observedDigest?:  string                  //`json:"observedDigest,omitempty"`
+	veleroExportRef?:      any  //`json:"veleroExportRef,omitempty"`
 }
 
 type TransportProgress = {
-	TotalBytes?: number //`json:"totalBytes,omitempty"`
-	BytesDone?:  number //`json:"bytesDone,omitempty"`
+	totalBytes?: number //`json:"totalBytes,omitempty"`
+	bytesDone?:  number //`json:"bytesDone,omitempty"`
 }
 
 //+kubebuilder:object:root=true
@@ -154,6 +154,32 @@ type TransportProgress = {
 
 // DataExport is the Schema for the dataexports API
 export type DataExportKind = K8sResourceCommon & {
-	Spec:   DataExportSpec   //`json:"spec,omitempty"`
-	Status: DataExportStatus //`json:"status,omitempty"`
+	spec:   DataExportSpec   //`json:"spec,omitempty"`
+	status: DataExportStatus //`json:"status,omitempty"`
+}
+
+// MigHookSpec defines the desired state of MigHook
+type MigHookSpec = {
+	custom?:                 boolean   //`json:"custom"`
+	image?:                  string //`json:"image"`
+	playbook?:               string //`json:"playbook,omitempty"`
+	targetCluster?:          string //`json:"targetCluster"`
+	activeDeadlineSeconds?:  number  //`json:"activeDeadlineSeconds,omitempty"`
+	hookName?:               string //`json:"hookName,omitempty"`
+	operation?:              string //`json:"operation,omitempty"`
+	command?:                string //`json:"command,omitempty"`
+}
+
+// MigHookStatus defines the observed state of MigHook
+type MigHookStatus = {
+	conditions?: any         //`json:",inline"`
+	observedGeneration?:  number //`json:"observedGeneration,omitempty"`
+}
+
+// +kubebuilder:object:root=true
+
+// MigHook is the Schema for the mighooks API
+export type MigHookKind = K8sResourceCommon & {
+	spec:   MigHookSpec   //`json:"spec,omitempty"`
+	status: MigHookStatus //`json:"status,omitempty"`
 }
