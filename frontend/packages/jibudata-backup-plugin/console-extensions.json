@@ -138,6 +138,38 @@
   {
     "type": "console.navigation/resource-ns",
     "properties": {
+      "id": "dataexports",
+      "section": "backuprestore",
+      "name": "DataExport List",
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1alpha1",
+        "kind": "DataExport"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+      "id": "dataimports",
+      "section": "backuprestore",
+      "name": "DataImport List",
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1alpha1",
+        "kind": "DataImport"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
     "id": "miganalytic",
     "section": "backuprestore",
     "name": "MigAnalytic List",
@@ -161,22 +193,6 @@
       "group": "migration.yinhestor.com",
       "version": "v1alpha1",
       "kind": "MigCluster"
-      }
-    },
-    "flags": {
-      "required": ["JIBUDATA_BACKUP"]
-    }
-  },
-  {
-    "type": "console.navigation/resource-ns",
-    "properties": {
-    "id": "databasehooks",
-    "section": "velerobackuprestore",
-    "name": "Database Hooks",
-    "model": {
-      "group": "ys.jibudata.com",
-      "version": "v1alpha1",
-      "kind": "AppHook"
       }
     },
     "flags": {
@@ -261,6 +277,230 @@
     },
     "flags": {
       "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "databasehooks",
+    "section": "velerobackuprestore",
+    "name": "AmberApp List",
+    "model": {
+      "group": "ys.jibudata.com",
+      "version": "v1alpha1",
+      "kind": "AppHook"
+      }
+    },
+    "flags": {
+      "required": ["VELERO_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "veleroexports",
+    "section": "velerobackuprestore",
+    "name": "VeleroExport List",
+    "model": {
+      "group": "ys.jibudata.com",
+      "version": "v1alpha1",
+      "kind": "VeleroExport"
+      }
+    },
+    "flags": {
+      "required": ["VELERO_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "veleroimports",
+    "section": "velerobackuprestore",
+    "name": "VeleroImport List",
+    "model": {
+      "group": "ys.jibudata.com",
+      "version": "v1alpha1",
+      "kind": "VeleroImport"
+      }
+    },
+    "flags": {
+      "required": ["VELERO_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "velerobackups",
+    "section": "velerobackuprestore",
+    "name": "Velero Backups",
+    "model": {
+      "group": "velero.io",
+      "version": "v1",
+      "kind": "Backup"
+      }
+    },
+    "flags": {
+      "required": ["VELERO_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "velerorestores",
+    "section": "velerobackuprestore",
+    "name": "Velero Restores",
+    "model": {
+      "group": "velero.io",
+      "version": "v1",
+      "kind": "Restore"
+      }
+    },
+    "flags": {
+      "required": ["VELERO_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "velerovolbackups",
+    "section": "velerobackuprestore",
+    "name": "PodVolumeBackup",
+    "model": {
+      "group": "velero.io",
+      "version": "v1",
+      "kind": "PodVolumeBackup"
+      }
+    },
+    "flags": {
+      "required": ["VELERO_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "velerovolrestores",
+    "section": "velerobackuprestore",
+    "name": "PodVolumeRestore",
+    "model": {
+      "group": "velero.io",
+      "version": "v1",
+      "kind": "PodVolumeRestore"
+      }
+    },
+    "flags": {
+      "required": ["VELERO_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "velerobackuplocations",
+    "section": "velerobackuprestore",
+    "name": "BackupStorageLocation",
+    "model": {
+      "group": "velero.io",
+      "version": "v1",
+      "kind": "BackupStorageLocation"
+      }
+    },
+    "flags": {
+      "required": ["VELERO_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "velerosnaplocations",
+    "section": "velerobackuprestore",
+    "name": "VolumeSnapshotLocation",
+    "model": {
+      "group": "velero.io",
+      "version": "v1",
+      "kind": "VolumeSnapshotLocation"
+      }
+    },
+    "flags": {
+      "required": ["VELERO_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "veleroresticreps",
+    "section": "velerobackuprestore",
+    "name": "ResticRepository",
+    "model": {
+      "group": "velero.io",
+      "version": "v1",
+      "kind": "ResticRepository"
+      }
+    },
+    "flags": {
+      "required": ["VELERO_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "velerodeletebackups",
+    "section": "velerobackuprestore",
+    "name": "DeleteBackupRequest",
+    "model": {
+      "group": "velero.io",
+      "version": "v1",
+      "kind": "DeleteBackupRequest"
+      }
+    },
+    "flags": {
+      "required": ["VELERO_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "velerodownloads",
+    "section": "velerobackuprestore",
+    "name": "DownloadRequest",
+    "model": {
+      "group": "velero.io",
+      "version": "v1",
+      "kind": "DownloadRequest"
+      }
+    },
+    "flags": {
+      "required": ["VELERO_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "veleroschedules",
+    "section": "velerobackuprestore",
+    "name": "Schedule",
+    "model": {
+      "group": "velero.io",
+      "version": "v1",
+      "kind": "Schedule"
+      }
+    },
+    "flags": {
+      "required": ["VELERO_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "veleroserverrequests",
+    "section": "velerobackuprestore",
+    "name": "ServerStatusRequest",
+    "model": {
+      "group": "velero.io",
+      "version": "v1",
+      "kind": "ServerStatusRequest"
+      }
+    },
+    "flags": {
+      "required": ["VELERO_BACKUP"]
     }
   }
 ]
