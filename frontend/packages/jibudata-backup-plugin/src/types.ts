@@ -112,3 +112,48 @@ export type BackupJobKind = K8sResourceCommon & {
 	status?: BackupJobStatus //`json:"status,omitempty"`
 }
 
+// Data Export Type
+type ExportPolicy = {
+	// Requency of the export, default is 1 export per snapshot
+	// Frequency int           `json:"requency,omitempty"`
+	Retention?: any //`json:"retention,omitempty"`
+}
+
+// DataExportSpec defines the desired state of DataExport
+type DataExportSpec = {
+	Type?:         string                    //`json:"type"`
+	Policy?:       ExportPolicy              //`json:"policy,omitempty"`
+	BackupJobRef?: any   //`json:"backupJobRef"`
+	DataSources?:  any //`json:"dataSources,omitempty"`
+	// DataRepo     DataRepoImpl              `json:"dataRepo,omitempty"`
+}
+
+// DataExportStatus defines the observed state of DataExport
+type DataExportStatus = {
+	Conditions?: any          //`json:",inline"`
+	Phase?:               string                       //`json:"phase,omitempty"`
+	StartTimestamp?:      any                 //`json:"startTimestamp,omitempty"`
+	StopTimestamp?:      any                 //`json:"stopTimestamp,omitempty"`
+	CompletionTimestamp?:      any                // `json:"completionTimestamp,omitempty"`
+	Progress?:{
+        [key: string]: TransportProgress //`json:"progress,omitempty"`
+    }
+	// +kubebuilder:pruning:PreserveUnknownFields
+	DataLocations?:      any          //`json:"dataLocations,omitempty"`
+	ObservedDigest?:  string                  //`json:"observedDigest,omitempty"`
+	VeleroExportRef?:      any  //`json:"veleroExportRef,omitempty"`
+}
+
+type TransportProgress = {
+	TotalBytes?: number //`json:"totalBytes,omitempty"`
+	BytesDone?:  number //`json:"bytesDone,omitempty"`
+}
+
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
+
+// DataExport is the Schema for the dataexports API
+export type DataExportKind = K8sResourceCommon & {
+	Spec:   DataExportSpec   //`json:"spec,omitempty"`
+	Status: DataExportStatus //`json:"status,omitempty"`
+}

@@ -24,6 +24,18 @@ export const BackupJobModel: K8sKind = {
     plural: 'backupjobs',
 };
 
+export const DataExportModel: K8sKind = {
+    kind: 'DataExport',
+    label: 'DataExport',
+    labelPlural: 'dataexports',
+    apiGroup: 'migration.yinhestor.com',
+    apiVersion: 'v1alpha1',
+    abbr: 'DXP',
+    namespaced: true,
+    crd: true,
+    plural: 'dataexports',
+};
+
 export const VeleroBackupModel: K8sKind = {
     kind: 'Backup',
     label: 'Backup',
