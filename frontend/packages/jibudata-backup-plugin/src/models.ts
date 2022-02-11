@@ -48,6 +48,18 @@ export const MigHookModel: K8sKind = {
     plural: 'mighooks',
 };
 
+export const AppHookModel: K8sKind = {
+    kind: 'AppHook',
+    label: 'AppHook',
+    labelPlural: 'apphooks',
+    apiGroup: 'ys.jibudata.com',
+    apiVersion: 'v1alpha1',
+    abbr: 'AHK',
+    namespaced: true,
+    crd: true,
+    plural: 'apphooks',
+};
+
 export const VeleroBackupModel: K8sKind = {
     kind: 'Backup',
     label: 'Backup',
