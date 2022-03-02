@@ -226,3 +226,58 @@ export type AppHookKind = K8sResourceCommon & {
 	status?: AppHookStatus //`json:"status,omitempty"`
 }
 
+type DisasterRecoverySpec = {
+	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
+	// Important: Run "make" to regenerate code after modifying this file
+	appName?:  string               // `json:"appName,omitempty"`
+	drConfig?: any //`json:"drConfig,omitempty"`
+}
+
+type ClusterStatus = {
+	name?:   string //`json:"name,omitempty"`
+	status?: string //`json:"status,omitempty"`
+}
+
+// DisasterRecoveryStatus defines the observed state of DisasterRecovery
+type DisasterRecoveryStatus = {
+	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
+	// Important: Run "make" to regenerate code after modifying this file
+	state?:          string //`json:"state,omitempty"`
+	primaryState?:   ClusterStatus //`json:"primaryState,omitempty"`
+	secondaryState?: ClusterStatus //`json:"secondaryState,omitempty"`
+}
+
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
+
+// DisasterRecovery is the Schema for the disasterrecoveries API
+export type DrKind = K8sResourceCommon & {
+	spec?:   DisasterRecoverySpec   //`json:"spec,omitempty"`
+	status?: DisasterRecoveryStatus //`json:"status,omitempty"`
+}
+
+type DrConfigSpec = {
+	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
+	// Important: Run "make" to regenerate code after modifying this file
+	srcCluster?: string //`json:"srcCluster,omitempty"`
+	dstCluster?: string //`json:"dstCluster,omitempty"`
+	syncType?:   string //`json:"syncType,omitempty"`
+	poolName?:   string //`json:"poolName,omitempty"`
+}
+
+// DrConfigStatus defines the observed state of DrConfig
+type DrConfigStatus = {
+	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
+	// Important: Run "make" to regenerate code after modifying this file
+	state?: string //`json:"state,omitempty"`
+}
+
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
+
+// DrConfig is the Schema for the drconfigs API
+export type DrConfigKind = K8sResourceCommon & {
+	spec?:   DrConfigSpec   //`json:"spec,omitempty"`
+	status?: DrConfigStatus //`json:"status,omitempty"`
+}
+
