@@ -72,4 +72,26 @@ export const VeleroBackupModel: K8sKind = {
     plural: 'backups',
 };
 
+export const DrModel: K8sKind = {
+    kind: 'DisasterRecovery',
+    label: 'DisasterRecovery',
+    labelPlural: 'disasterrecoveries',
+    apiGroup: 'migration.yinhestor.com',
+    apiVersion: 'v1',
+    abbr: 'DR',
+    namespaced: true,
+    crd: true,
+    plural: 'disasterrecoveries',
+};
 
+export const DrConfigModel: K8sKind = {
+    kind: 'DrConfig',
+    label: 'DrConfig',
+    labelPlural: 'drconfigs',
+    apiGroup: 'migration.yinhestor.com',
+    apiVersion: 'v1',
+    abbr: 'DRC',
+    namespaced: true,
+    crd: true,
+    plural: 'drconfigs',
+};
