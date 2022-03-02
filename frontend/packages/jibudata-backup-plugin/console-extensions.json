@@ -22,6 +22,28 @@
     }
   },
   {
+    "type": "console.flag/model",
+    "properties": {
+      "flag": "JIBUDATA_DR",
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1",
+        "kind": "DisasterRecovery"
+      }
+    }
+  },
+  {
+    "type": "console.navigation/section",
+    "properties": {
+      "id": "disasterrecovery",
+      "name": "Disaster Recovery",
+      "insertAfter": "workloads"
+    },
+    "flags": {
+      "required": ["JIBUDATA_DR"]
+    }
+  },
+  {
     "type": "console.navigation/section",
     "properties": {
       "id": "backuprestore",
@@ -41,6 +63,52 @@
     },
     "flags": {
       "required": ["VELERO_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+      "id": "disasterrecoveries",
+      "section": "disasterrecovery",
+      "name": "DR List",
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1",
+        "kind": "DisasterRecovery"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_DR"]
+    }
+  },
+  {
+    "type": "console.page/resource/list",
+    "properties": {
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1",
+        "kind": "DisasterRecovery"
+      },
+      "component": { "$codeRef": "pages.DrListPage" }
+    },
+    "flags": {
+      "required": ["JIBUDATA_DR"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+      "id": "drconfigs",
+      "section": "disasterrecovery",
+      "name": "DR Configs",
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1",
+        "kind": "DrConfig"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_DR"]
     }
   },
   {
