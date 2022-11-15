@@ -95,3 +95,27 @@ export const DrConfigModel: K8sKind = {
     crd: true,
     plural: 'drconfigs',
 };
+
+export const DrRequestModel: K8sKind = {
+    kind: 'DrOperationRequest',
+    label: 'DrOperationRequest',
+    labelPlural: 'droperationrequests',
+    apiGroup: 'migration.yinhestor.com',
+    apiVersion: 'v1',
+    abbr: 'DRR',
+    namespaced: true,
+    crd: true,
+    plural: 'droperationrequests',
+};
+
+export const DrOperationModel: K8sKind = {
+    kind: 'DrOperation',
+    label: 'DrOperation',
+    labelPlural: 'droperations',
+    apiGroup: 'migration.yinhestor.com',
+    apiVersion: 'v1',
+    abbr: 'DRO',
+    namespaced: true,
+    crd: true,
+    plural: 'droperations',
+};
