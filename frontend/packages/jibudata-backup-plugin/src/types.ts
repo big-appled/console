@@ -281,3 +281,80 @@ export type DrConfigKind = K8sResourceCommon & {
 	status?: DrConfigStatus //`json:"status,omitempty"`
 }
 
+type FsmStatus = {
+	fsmState?: string //           StateMachineState `json:"fsmState,omitempty"`
+	fsmPreState?: string //       StateMachineState `json:"fsmPreState,omitempty"`
+	lastTransitionTime?: any // *metav1.Time      `json:"lastTransitionTime,omitempty"`
+}
+
+type SubFsmStatus = {
+	subFsmName?: string    //`json:"subFsmName,omitempty"`
+	status?:     FsmStatus //`json:"status,omitempty"`
+}
+
+type DrFsmStatus = {
+	mainStatus?:   FsmStatus    //`json:"mainStatus,omitempty"`
+	subStatus?:    SubFsmStatus //`json:"subStatus,omitempty"`
+	availableOps?: string[]     //`json:"availableOps,omitempty"`
+}
+
+type DrOperationRequestSpec = {
+	drInstanceName?:   string      //`json:"drInstanceName"`
+	operation?:        string      //`json:"operation"`
+	fsmCurrentStatus?: DrFsmStatus //`json:"fsmCurrentStatus,omitempty"`
+}
+
+type DrOperationRequestStatus = {
+	phase?: string             //DrOperationRequestPhase `json:"phase,omitempty"`
+	processedTimestamp?: any //*metav1.Time            `json:"processedTimestamp,omitempty"`
+}
+
+//+kubebuilder:object:root=true
+
+// DrOperationRequest is the Schema for the droperationrequests API
+export type DrOperationRequest = K8sResourceCommon & {
+	spec?:   DrOperationRequestSpec   //`json:"spec,omitempty"`
+	status?: DrOperationRequestStatus //`json:"status,omitempty"`
+}
+
+type DirectiveControl = {
+	phase?:     string //`json:"phase,omitempty"`
+	action?:    string //`json:"action,omitempty"`
+	confirmed?: boolean   //`json:"confirmed,omitempty"`
+}
+
+type FunctionStep = {
+	step?:                string       //`json:"step,omitempty"`
+	startTimestamp?:      any //*metav1.Time //`json:"startTimestamp,omitempty"`
+	completionTimestamp?: any //*metav1.Time //`json:"completionTimestamp,omitempty"`
+}
+
+type DrOperationSpec = {
+	rrInstanceName?: string              //`json:"drInstanceName"`
+	operationType?:  string              //`json:"operationType"`
+	subOperation?:   string              //`json:"subOperation"`
+	directives?:     DirectiveControl[] //`json:"directives,omitempty"`
+}
+
+type ClusterRoleChangeStatus = {
+	primary?:   string //`json:"primary,omitempty"`
+	secondary?: string //`json:"secondary,omitempty"`
+}
+
+type DrOperationStatus = {
+	phase?:               string                   //`json:"phase,omitempty"`
+	state?:               string                   //`json:"state,omitempty"`
+	steps?:               FunctionStep[]          //`json:"steps,omitempty"`
+	roleStatus?:          ClusterRoleChangeStatus //`json:"roleStatus,omitempty"`
+	startTimestamp?:      any //*metav1.Time             //`json:"startTimestamp,omitempty"`
+	completionTimestamp?: any //*metav1.Time             //`json:"completionTimestamp,omitempty"`
+	//yscorev1.Issues?:     //`json:",inline"`
+}
+
+//+kubebuilder:object:root=true
+
+// DrOperation is the Schema for the droperations API
+export type DrOperation = K8sResourceCommon & {
+	spec?:   DrOperationSpec   //`json:"spec,omitempty"`
+	status?: DrOperationStatus //`json:"status,omitempty"`
+}
