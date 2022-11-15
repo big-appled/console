@@ -48,7 +48,7 @@
     "properties": {
       "id": "backuprestore",
       "name": "Backup and Restore",
-      "insertAfter": "workloads"
+      "insertAfter": "disasterrecovery"
     },
     "flags": {
       "required": ["JIBUDATA_BACKUP"]
@@ -105,6 +105,52 @@
         "group": "migration.yinhestor.com",
         "version": "v1",
         "kind": "DrConfig"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_DR"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+      "id": "droperationrequests",
+      "section": "disasterrecovery",
+      "name": "DR Requests",
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1",
+        "kind": "DrOperationRequest"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_DR"]
+    }
+  },
+  {
+    "type": "console.page/resource/list",
+    "properties": {
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1",
+        "kind": "DrOperationRequest"
+      },
+      "component": { "$codeRef": "pages.DrRequestListPage" }
+    },
+    "flags": {
+      "required": ["JIBUDATA_DR"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+      "id": "droperations",
+      "section": "disasterrecovery",
+      "name": "DR Operations",
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1",
+        "kind": "DrOperation"
       }
     },
     "flags": {
