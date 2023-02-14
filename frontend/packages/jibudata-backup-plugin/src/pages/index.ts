@@ -5,3 +5,5 @@ export * from "./mighook-list";
 export * from "./apphook-list";
 export * from "./dr-list";
 export * from "./drreq-list";
+export * from "./drop-list";
+export * from "./resourcesync-list";
