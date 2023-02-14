@@ -15,46 +15,48 @@ import {
     referenceForModel,
 } from '@console/internal/module/k8s';
 
-import { DrModel } from '../models';
-import { DrKind } from '../types';
+import { DrResourceSyncModel } from '../models';
+import { ResourceSync } from '../types';
 
 const { common } = Kebab.factory;
-const menuActions = [...Kebab.getExtensionsActionsForKind(DrModel), ...common];
+const menuActions = [...Kebab.getExtensionsActionsForKind(DrResourceSyncModel), ...common];
 
 const tableColumnClasses = [
     'pf-m-hidden pf-m-visible-on-md pf-u-w-16-on-md', // name
-    'pf-m-hidden pf-m-visible-on-md pf-u-w-16-on-md', // primary cluster
-    'pf-m-hidden pf-m-visible-on-md pf-u-w-16-on-md', // secondary cluster
-    'pf-m-hidden pf-m-visible-on-md pf-u-w-16-on-md', // dr config
+    'pf-m-hidden pf-m-visible-on-md pf-u-w-16-on-md', // dr instance name
+    'pf-m-hidden pf-m-visible-on-md pf-u-w-16-on-md', // primaryName
+    'pf-m-hidden pf-m-visible-on-md pf-u-w-16-on-md', // phase
     'pf-m-hidden pf-m-visible-on-md pf-u-w-16-on-md', // status
     'pf-m-hidden pf-m-visible-on-md pf-u-w-16-on-md', // creation timestamp
     Kebab.columnClass,
 ];
 
-const DrTableRow: React.FC<RowFunctionArgs<DrKind>> = ({ obj }) => {
+const ResourceSyncTableRow: React.FC<RowFunctionArgs<ResourceSync>> = ({ obj }) => {
     return (
       <>
         <TableData className={classNames(tableColumnClasses[0], 'co-break-word')}>
-          <ResourceLink kind={referenceForModel(DrModel)} name={obj.metadata.name} namespace={obj.metadata.namespace}>
+          <ResourceLink kind={referenceForModel(DrResourceSyncModel)} name={obj.metadata.name} namespace={obj.metadata.namespace}>
           </ResourceLink>
         </TableData>
         <TableData className={classNames(tableColumnClasses[1], 'co-break-word')}>
-          {obj.status?.primaryState?.name + " " + obj.status?.primaryState?.status}
+          {obj.spec.drInstanceName}
         </TableData>
         <TableData className={tableColumnClasses[2]}> 
-          {obj.status?.secondaryState?.name + " " + obj.status?.secondaryState?.status}
+          {obj.spec.primaryName}
         </TableData>
-        <TableData className={tableColumnClasses[3]}>{obj.spec?.drConfig}</TableData>
+        <TableData className={tableColumnClasses[3]}> 
+          {obj.status.phase}
+        </TableData>
         <TableData className={tableColumnClasses[4]}>{obj.status?.state}</TableData>
         <TableData className={tableColumnClasses[5]}><Timestamp timestamp={obj.metadata.creationTimestamp} /></TableData>
         <TableData className={tableColumnClasses[6]}>
-          <ResourceKebab actions={menuActions} kind={referenceForModel(DrModel)} resource={obj} />
+          <ResourceKebab actions={menuActions} kind={referenceForModel(DrResourceSyncModel)} resource={obj} />
         </TableData>
       </>
     );
 };
 
-export const DrList: React.FC = (props) => {
+export const ResourceSyncList: React.FC = (props) => {
     const { t } = useTranslation();
     const DrTableHeader = () => {
       return [
@@ -65,20 +67,20 @@ export const DrList: React.FC = (props) => {
           props: { className: tableColumnClasses[0] },
         },
         {
-          title: t('public~Primary'),
-          sortField: 'status.primaryState.name',
+          title: t('public~DrInstance'),
+          sortField: 'spec.drInstanceName',
           transforms: [sortable],
           props: { className: tableColumnClasses[1] },
         },
         {
-            title: t('public~Secondary'),
-            sortField: 'status.secondaryState.name',
+            title: t('public~PrimaryName'),
+            sortField: 'spec.primaryName',
             transforms: [sortable],
             props: { className: tableColumnClasses[2] },
         },
         {
-            title: t('public~Config'),
-            sortField: 'spec.drConfig',
+            title: t('public~Phase'),
+            sortField: 'status.phase',
             transforms: [sortable],
             props: { className: tableColumnClasses[3] },
         },
@@ -103,34 +105,34 @@ export const DrList: React.FC = (props) => {
     return (
       <Table
         {...props}
-        aria-label={t('public~Drs')}
+        aria-label={t('public~ResourceSync')}
         Header={DrTableHeader}
-        Row={DrTableRow}
+        Row={ResourceSyncTableRow}
         virtualize
       />
     );
 };
 
-export const DrListPage: React.FC<DrPageProps> = (props) => {
+export const ResourceSyncListPage: React.FC<ResourceSyncPageProps> = (props) => {
     const createProps = {
-        to: `/k8s/ns/${props.namespace || 'default'}/${referenceForModel(DrModel)}/~new`,
+        to: `/k8s/ns/${props.namespace || 'default'}/${referenceForModel(DrResourceSyncModel)}/~new`,
     };
     const { t } = useTranslation();
     return (
         <ListPage
         {..._.omit(props, 'mock')}
-        title={t('public~Drs')}
-        kind={referenceForModel(DrModel)}
-        ListComponent={DrList}
+        title={t('public~ResourceSync')}
+        kind={referenceForModel(DrResourceSyncModel)}
+        ListComponent={ResourceSyncList}
         canCreate={true}
         filterLabel={props.filterLabel}
         createProps={createProps}
-        createButtonText={t('public~Create Dr')}
+        createButtonText={t('public~Create ResourceSync')}
         />
     );
 };
 
-export type DrPageProps = {
+export type ResourceSyncPageProps = {
     filterLabel: string;
     namespace: string;
 };
