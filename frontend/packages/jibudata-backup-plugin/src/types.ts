@@ -330,7 +330,7 @@ type FunctionStep = {
 }
 
 type DrOperationSpec = {
-	rrInstanceName?: string              //`json:"drInstanceName"`
+	drInstanceName?: string              //`json:"drInstanceName"`
 	operationType?:  string              //`json:"operationType"`
 	subOperation?:   string              //`json:"subOperation"`
 	directives?:     DirectiveControl[] //`json:"directives,omitempty"`
@@ -358,3 +358,49 @@ export type DrOperation = K8sResourceCommon & {
 	spec?:   DrOperationSpec   //`json:"spec,omitempty"`
 	status?: DrOperationStatus //`json:"status,omitempty"`
 }
+
+type ResourceSyncSpec = {
+	drInstanceName: string;
+	drConfigName:   string;
+	primaryName:    string;
+	operation:      string;
+}
+
+type SyncJobStatus = {
+	name:            string;
+	status:          string;
+	totalItems:      number;
+	completedItems:  number;
+	startTime:       string;
+	completionTime:  string;
+	succeeded:       boolean;
+}
+
+type StatusPerCluster = {
+	backups:  SyncJobStatus[];
+	restores: SyncJobStatus[];
+}
+
+type OperationStatus = {
+	operation:      string;
+	performOn:      string;
+	startTime:      string;
+	completionTime: string;
+	result:         string;
+}
+
+type JobStatusMap = Map<string, StatusPerCluster>
+
+type ResourceSyncStatus = {
+	phase:            string;
+	state:            string;
+	jobStatusInfo:    JobStatusMap;
+	operationResults: OperationStatus[];
+}
+
+// ResourceSync is the Schema for the resourcesync API
+export type ResourceSync = K8sResourceCommon & {
+	spec:   ResourceSyncSpec;
+	status: ResourceSyncStatus;
+}
+
