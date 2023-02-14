@@ -35,12 +35,12 @@
   {
     "type": "console.navigation/section",
     "properties": {
-      "id": "disasterrecovery",
-      "name": "Disaster Recovery",
+      "id": "velerobackuprestore",
+      "name": "Velero",
       "insertAfter": "workloads"
     },
     "flags": {
-      "required": ["JIBUDATA_DR"]
+      "required": ["VELERO_BACKUP"]
     }
   },
   {
@@ -48,7 +48,7 @@
     "properties": {
       "id": "backuprestore",
       "name": "Backup and Restore",
-      "insertAfter": "disasterrecovery"
+      "insertAfter": "workloads"
     },
     "flags": {
       "required": ["JIBUDATA_BACKUP"]
@@ -57,12 +57,12 @@
   {
     "type": "console.navigation/section",
     "properties": {
-      "id": "velerobackuprestore",
-      "name": "Velero",
-      "insertAfter": "backuprestore"
+      "id": "disasterrecovery",
+      "name": "Disaster Recovery",
+      "insertAfter": "workloads"
     },
     "flags": {
-      "required": ["VELERO_BACKUP"]
+      "required": ["JIBUDATA_DR"]
     }
   },
   {
@@ -158,6 +158,50 @@
     }
   },
   {
+    "type": "console.page/resource/list",
+    "properties": {
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1",
+        "kind": "DrOperation"
+      },
+      "component": { "$codeRef": "pages.DrOperationListPage" }
+    },
+    "flags": {
+      "required": ["JIBUDATA_DR"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+      "id": "resourcesyncs",
+      "section": "disasterrecovery",
+      "name": "DR ResourceSync",
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1",
+        "kind": "ResourceSync"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_DR"]
+    }
+  },
+  {
+    "type": "console.page/resource/list",
+    "properties": {
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1",
+        "kind": "ResourceSync"
+      },
+      "component": { "$codeRef": "pages.ResourceSyncListPage" }
+    },
+    "flags": {
+      "required": ["JIBUDATA_DR"]
+    }
+  },
+  {
     "type": "console.navigation/resource-ns",
     "properties": {
       "id": "backups",
@@ -188,62 +232,6 @@
     }
   },
   {
-    "type": "console.page/resource/list",
-    "properties": {
-      "model": {
-        "group": "migration.yinhestor.com",
-        "version": "v1alpha1",
-        "kind": "BackupJob"
-      },
-      "component": { "$codeRef": "pages.BackupJobListPage" }
-    },
-    "flags": {
-      "required": ["JIBUDATA_BACKUP"]
-    }
-  },
-  {
-    "type": "console.page/resource/list",
-    "properties": {
-      "model": {
-        "group": "migration.yinhestor.com",
-        "version": "v1alpha1",
-        "kind": "DataExport"
-      },
-      "component": { "$codeRef": "pages.DataExportListPage" }
-    },
-    "flags": {
-      "required": ["JIBUDATA_BACKUP"]
-    }
-  },
-  {
-    "type": "console.page/resource/list",
-    "properties": {
-      "model": {
-        "group": "migration.yinhestor.com",
-        "version": "v1alpha1",
-        "kind": "MigHook"
-      },
-      "component": { "$codeRef": "pages.MigHookListPage" }
-    },
-    "flags": {
-      "required": ["JIBUDATA_BACKUP"]
-    }
-  },
-  {
-    "type": "console.page/resource/list",
-    "properties": {
-      "model": {
-        "group": "ys.jibudata.com",
-        "version": "v1alpha1",
-        "kind": "AppHook"
-      },
-      "component": { "$codeRef": "pages.AppHookListPage" }
-    },
-    "flags": {
-      "required": ["JIBUDATA_BACKUP"]
-    }
-  },
-  {
     "type": "console.navigation/resource-ns",
     "properties": {
       "id": "backupjobs",
@@ -254,6 +242,20 @@
         "version": "v1alpha1",
         "kind": "BackupJob"
       }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.page/resource/list",
+    "properties": {
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1alpha1",
+        "kind": "BackupJob"
+      },
+      "component": { "$codeRef": "pages.BackupJobListPage" }
     },
     "flags": {
       "required": ["JIBUDATA_BACKUP"]
@@ -302,6 +304,20 @@
         "version": "v1alpha1",
         "kind": "DataExport"
       }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.page/resource/list",
+    "properties": {
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1alpha1",
+        "kind": "DataExport"
+      },
+      "component": { "$codeRef": "pages.DataExportListPage" }
     },
     "flags": {
       "required": ["JIBUDATA_BACKUP"]
@@ -366,6 +382,20 @@
       "version": "v1alpha1",
       "kind": "MigHook"
       }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.page/resource/list",
+    "properties": {
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1alpha1",
+        "kind": "MigHook"
+      },
+      "component": { "$codeRef": "pages.MigHookListPage" }
     },
     "flags": {
       "required": ["JIBUDATA_BACKUP"]
@@ -438,6 +468,54 @@
   {
     "type": "console.navigation/resource-ns",
     "properties": {
+    "id": "backuppolicies",
+    "section": "backuprestore",
+    "name": "BackupPolicy List",
+    "model": {
+      "group": "ys.jibudata.com",
+      "version": "v1beta1",
+      "kind": "BackupPolicy"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "backuptemplates",
+    "section": "backuprestore",
+    "name": "BackupTemplate List",
+    "model": {
+      "group": "ys.jibudata.com",
+      "version": "v1beta1",
+      "kind": "BackupTemplate"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "hooks",
+    "section": "backuprestore",
+    "name": "Hook List",
+    "model": {
+      "group": "ys.jibudata.com",
+      "version": "v1beta1",
+      "kind": "Hook"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
     "id": "databasehooks",
     "section": "velerobackuprestore",
     "name": "AmberApp List",
@@ -449,6 +527,20 @@
     },
     "flags": {
       "required": ["VELERO_BACKUP"]
+    }
+  },
+  {
+    "type": "console.page/resource/list",
+    "properties": {
+      "model": {
+        "group": "ys.jibudata.com",
+        "version": "v1alpha1",
+        "kind": "AppHook"
+      },
+      "component": { "$codeRef": "pages.AppHookListPage" }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
     }
   },
   {
@@ -653,6 +745,70 @@
       "group": "velero.io",
       "version": "v1",
       "kind": "ServerStatusRequest"
+      }
+    },
+    "flags": {
+      "required": ["VELERO_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "exporthandlers",
+    "section": "velerobackuprestore",
+    "name": "ExportHandler List",
+    "model": {
+      "group": "agent.jibudata.com",
+      "version": "v1alpha1",
+      "kind": "ExportHandler"
+      }
+    },
+    "flags": {
+      "required": ["VELERO_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "importhandlers",
+    "section": "velerobackuprestore",
+    "name": "ImportHandler List",
+    "model": {
+      "group": "agent.jibudata.com",
+      "version": "v1alpha1",
+      "kind": "ImportHandler"
+      }
+    },
+    "flags": {
+      "required": ["VELERO_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "resticexports",
+    "section": "velerobackuprestore",
+    "name": "ResticExport",
+    "model": {
+      "group": "agent.jibudata.com",
+      "version": "v1alpha1",
+      "kind": "ResticExport"
+      }
+    },
+    "flags": {
+      "required": ["VELERO_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "resticimports",
+    "section": "velerobackuprestore",
+    "name": "ResticImport",
+    "model": {
+      "group": "agent.jibudata.com",
+      "version": "v1alpha1",
+      "kind": "ResticImport"
       }
     },
     "flags": {

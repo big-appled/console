@@ -119,3 +119,15 @@ export const DrOperationModel: K8sKind = {
     crd: true,
     plural: 'droperations',
 };
+
+export const DrResourceSyncModel: K8sKind = {
+    kind: 'ResourceSync',
+    label: 'ResourceSync',
+    labelPlural: 'resourcesyncs',
+    apiGroup: 'migration.yinhestor.com',
+    apiVersion: 'v1',
+    abbr: 'RS',
+    namespaced: true,
+    crd: true,
+    plural: 'resourcesyncs',
+};
