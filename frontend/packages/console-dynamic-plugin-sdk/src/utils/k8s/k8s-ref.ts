@@ -30,7 +30,7 @@ export const getReference = ({
  * @returns The reference for model i.e `group~version~kind`.
  */
 export const getReferenceForModel = (model: K8sModel): K8sResourceKindReference =>
-  getReference({ group: model?.apiGroup, version: model.apiVersion, kind: model.kind });
+  getReference({ group: model?.apiGroup, version: model?.apiVersion, kind: model?.kind });
 
 /**
  * Provides apiVersion for a k8s model.
