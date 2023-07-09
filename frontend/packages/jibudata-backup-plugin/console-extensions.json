@@ -33,6 +33,28 @@
     }
   },
   {
+    "type": "console.flag/model",
+    "properties": {
+      "flag": "JIBUDATA_DR_VR",
+      "model": {
+        "group": "replication.storage.openshift.io",
+        "version": "v1alpha1",
+        "kind": "VolumeReplication"
+      }
+    }
+  },
+  {
+    "type": "console.flag/model",
+    "properties": {
+      "flag": "JIBUDATA_DR_VOLSYNC",
+      "model": {
+        "group": "volsync.backube",
+        "version": "v1alpha1",
+        "kind": "ReplicationDestination"
+      }
+    }
+  },
+  {
     "type": "console.navigation/section",
     "properties": {
       "id": "velerobackuprestore",
@@ -196,6 +218,22 @@
         "kind": "ResourceSync"
       },
       "component": { "$codeRef": "pages.ResourceSyncListPage" }
+    },
+    "flags": {
+      "required": ["JIBUDATA_DR"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+      "id": "drworkflows",
+      "section": "disasterrecovery",
+      "name": "DR WorkFlow",
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1",
+        "kind": "DrWorkFlow"
+      }
     },
     "flags": {
       "required": ["JIBUDATA_DR"]
@@ -541,6 +579,70 @@
     },
     "flags": {
       "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "volumereplications",
+    "section": "velerobackuprestore",
+    "name": "VolumeReplication",
+    "model": {
+      "group": "replication.storage.openshift.io",
+      "version": "v1alpha1",
+      "kind": "VolumeReplication"
+      }
+    },
+    "flags": {
+      "required": ["VELERO_BACKUP", "JIBUDATA_DR_VR"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "volumereplicationclasses",
+    "section": "velerobackuprestore",
+    "name": "VolumeReplicationClass",
+    "model": {
+      "group": "replication.storage.openshift.io",
+      "version": "v1alpha1",
+      "kind": "VolumeReplicationClass"
+      }
+    },
+    "flags": {
+      "required": ["VELERO_BACKUP", "JIBUDATA_DR_VR"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "replicationsources",
+    "section": "velerobackuprestore",
+    "name": "ReplicationSource",
+    "model": {
+      "group": "volsync.backube",
+      "version": "v1alpha1",
+      "kind": "ReplicationSource"
+      }
+    },
+    "flags": {
+      "required": ["VELERO_BACKUP", "JIBUDATA_DR_VOLSYNC"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+    "id": "replicationdestinations",
+    "section": "velerobackuprestore",
+    "name": "ReplicationDestination",
+    "model": {
+      "group": "volsync.backube",
+      "version": "v1alpha1",
+      "kind": "ReplicationDestination"
+      }
+    },
+    "flags": {
+      "required": ["VELERO_BACKUP", "JIBUDATA_DR_VOLSYNC"]
     }
   },
   {
