@@ -226,6 +226,22 @@
   {
     "type": "console.navigation/resource-ns",
     "properties": {
+      "id": "drrehearsals",
+      "section": "disasterrecovery",
+      "name": "DR Rehearsal",
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1",
+        "kind": "DrRehearsal"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_DR"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
       "id": "drworkflows",
       "section": "disasterrecovery",
       "name": "DR WorkFlow",
