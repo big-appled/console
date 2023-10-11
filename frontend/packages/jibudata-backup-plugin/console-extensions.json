@@ -226,6 +226,22 @@
   {
     "type": "console.navigation/resource-ns",
     "properties": {
+      "id": "drdatasyncs",
+      "section": "disasterrecovery",
+      "name": "DR DataSync",
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1",
+        "kind": "DataSync"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_DR"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
       "id": "drrehearsals",
       "section": "disasterrecovery",
       "name": "DR Rehearsal",
@@ -249,6 +265,38 @@
         "group": "migration.yinhestor.com",
         "version": "v1",
         "kind": "DrWorkFlow"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_DR"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+      "id": "drgroups",
+      "section": "disasterrecovery",
+      "name": "DR Group",
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1",
+        "kind": "DrGroup"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_DR"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+      "id": "drgrouprequests",
+      "section": "disasterrecovery",
+      "name": "DR GroupRequest",
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1",
+        "kind": "DrGroupRequest"
       }
     },
     "flags": {
