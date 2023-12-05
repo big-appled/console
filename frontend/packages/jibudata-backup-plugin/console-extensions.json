@@ -306,6 +306,22 @@
   {
     "type": "console.navigation/resource-ns",
     "properties": {
+      "id": "drgroupoperations",
+      "section": "disasterrecovery",
+      "name": "DR GroupOperation",
+      "model": {
+        "group": "migration.yinhestor.com",
+        "version": "v1",
+        "kind": "DrGroupOperation"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_DR"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
       "id": "backups",
       "section": "backuprestore",
       "name": "Backup List",
