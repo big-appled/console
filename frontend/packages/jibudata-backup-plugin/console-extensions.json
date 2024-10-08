@@ -88,6 +88,17 @@
     }
   },
   {
+    "type": "console.navigation/section",
+    "properties": {
+      "id": "emergencyhandling",
+      "name": "Emergency Handling",
+      "insertAfter": "workloads"
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
     "type": "console.navigation/resource-ns",
     "properties": {
       "id": "disasterrecoveries",
@@ -995,6 +1006,102 @@
     },
     "flags": {
       "required": ["VELERO_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+      "id": "emergencyactions",
+      "section": "emergencyhandling",
+      "name": "Emergency Action",
+      "model": {
+        "group": "ys.jibudata.com",
+        "version": "v1alpha1",
+        "kind": "EmergencyAction"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+      "id": "emergencyplans",
+      "section": "emergencyhandling",
+      "name": "Emergency Plan",
+      "model": {
+        "group": "ys.jibudata.com",
+        "version": "v1alpha1",
+        "kind": "EmergencyPlan"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+      "id": "emergencyjobs",
+      "section": "emergencyhandling",
+      "name": "Emergency Job",
+      "model": {
+        "group": "ys.jibudata.com",
+        "version": "v1alpha1",
+        "kind": "EmergencyJob"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+      "id": "emergencyexecutions",
+      "section": "emergencyhandling",
+      "name": "Emergency Execution",
+      "model": {
+        "group": "ys.jibudata.com",
+        "version": "v1alpha1",
+        "kind": "EmergencyExecution"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+      "id": "emergencyrules",
+      "section": "emergencyhandling",
+      "name": "Emergency Rule",
+      "model": {
+        "group": "ys.jibudata.com",
+        "version": "v1alpha1",
+        "kind": "EmergencyRule"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+      "id": "emergencyevents",
+      "section": "emergencyhandling",
+      "name": "Emergency Event",
+      "model": {
+        "group": "ys.jibudata.com",
+        "version": "v1alpha1",
+        "kind": "EmergencyEvent"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
     }
   }
 ]
