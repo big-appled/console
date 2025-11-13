@@ -1103,5 +1103,21 @@
     "flags": {
       "required": ["JIBUDATA_BACKUP"]
     }
+  },
+  {
+    "type": "console.navigation/resource-ns",
+    "properties": {
+      "id": "emergencycronjobs",
+      "section": "emergencyhandling",
+      "name": "Emergency CronJob",
+      "model": {
+        "group": "ys.jibudata.com",
+        "version": "v1alpha1",
+        "kind": "EmergencyCronJob"
+      }
+    },
+    "flags": {
+      "required": ["JIBUDATA_BACKUP"]
+    }
   }
 ]
