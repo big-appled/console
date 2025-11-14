@@ -1,19 +1,18 @@
-import * as React from 'react';
-import * as _ from 'lodash-es';
-import { useTranslation } from 'react-i18next';
-import * as classNames from 'classnames';
 import { sortable } from '@patternfly/react-table';
+import * as _ from 'lodash-es';
+import * as React from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { ListPage, Table, TableData, RowFunctionArgs } from '@console/internal/components/factory';
+import { ListPage, RowFunctionArgs, Table, TableData } from '@console/internal/components/factory';
 import {
-    Kebab,
-    ResourceKebab,
-    ResourceLink,
-    Timestamp,
+  Kebab,
+  ResourceKebab,
+  ResourceLink,
 } from '@console/internal/components/utils';
 import {
-    referenceForModel,
+  referenceForModel,
 } from '@console/internal/module/k8s';
+import { Timestamp } from '@console/shared/src/components/datetime/Timestamp';
 
 import { BackupModel } from '../models';
 import { BackupKind } from '../types';
@@ -35,11 +34,11 @@ const tableColumnClasses = [
 const BackupTableRow: React.FC<RowFunctionArgs<BackupKind>> = ({ obj }) => {
     return (
       <>
-        <TableData className={classNames(tableColumnClasses[0], 'co-break-word')}>
+        <TableData className={tableColumnClasses[0]}>
           <ResourceLink kind={referenceForModel(BackupModel)} name={obj.metadata.name} namespace={obj.metadata.namespace}>
           </ResourceLink>
         </TableData>
-        <TableData className={classNames(tableColumnClasses[1], 'co-break-word')}>
+        <TableData className={tableColumnClasses[1]}>
           {obj.spec.srcClusterRef?.name}
         </TableData>
         <TableData className={tableColumnClasses[2]}>{obj.spec?.policy?.repeat? "True": "False"}</TableData>

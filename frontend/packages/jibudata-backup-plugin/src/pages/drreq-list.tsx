@@ -1,19 +1,18 @@
-import * as React from 'react';
-import * as _ from 'lodash-es';
-import { useTranslation } from 'react-i18next';
-import * as classNames from 'classnames';
 import { sortable } from '@patternfly/react-table';
+import * as _ from 'lodash-es';
+import * as React from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { ListPage, Table, TableData, RowFunctionArgs } from '@console/internal/components/factory';
+import { ListPage, RowFunctionArgs, Table, TableData } from '@console/internal/components/factory';
 import {
-    Kebab,
-    ResourceKebab,
-    ResourceLink,
-    Timestamp,
+  Kebab,
+  ResourceKebab,
+  ResourceLink,
 } from '@console/internal/components/utils';
 import {
-    referenceForModel,
+  referenceForModel,
 } from '@console/internal/module/k8s';
+import { Timestamp } from '@console/shared/src/components/datetime/Timestamp';
 
 import { DrRequestModel } from '../models';
 import { DrOperationRequest } from '../types';
@@ -33,11 +32,11 @@ const tableColumnClasses = [
 const DrReqTableRow: React.FC<RowFunctionArgs<DrOperationRequest>> = ({ obj }) => {
     return (
       <>
-        <TableData className={classNames(tableColumnClasses[0], 'co-break-word')}>
+        <TableData className={tableColumnClasses[0]}>
           <ResourceLink kind={referenceForModel(DrRequestModel)} name={obj.metadata.name} namespace={obj.metadata.namespace}>
           </ResourceLink>
         </TableData>
-        <TableData className={classNames(tableColumnClasses[1], 'co-break-word')}>
+        <TableData className={tableColumnClasses[1]}>
           {obj.spec.drInstanceName}
         </TableData>
         <TableData className={tableColumnClasses[2]}> 
